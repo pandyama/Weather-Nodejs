@@ -38,7 +38,7 @@ exports.currentWeather = function(query, callback){
 	  res.on('end', function (chunk) {
 	  	let weather = JSON.parse(data);
 	  	console.log(weather);
-	  	let weatherText = `It's ${weather.main.temp} degrees in ${city}!`;
+	  	let weatherText = `It's ${weather.main.temp} degrees F in ${city}!`;
 		callback.render('index', {weather: weatherText, error: null});
 	  });
 	}).on('error', function(err) {

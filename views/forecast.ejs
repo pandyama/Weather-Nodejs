@@ -29,23 +29,23 @@
       <table class="table table-bordered">
         <thead>
           <tr class="text-center">
-            <th scope="col">Time</th>
-            <th scope="col">Today</th>
-            <th scope="col">Tommorrow</th>
-            <th scope="col">Day After Tomorrow</th>
-            <th scope="col">Too Far</th>
-            <th scope="col">Why Bother</th>
+            <th scope="col" class="text-center"><h3>Time</h3></th>
+            <th scope="col" class="text-center"><h3>Today</h3></th>
+            <th scope="col" class="text-center"><h3>Day 2</h3></th>
+            <th scope="col" class="text-center"><h3>Day 3</h3></th>
+            <th scope="col" class="text-center"><h3>Day 4</h3></th>
+            <th scope="col" class="text-center"><h3>Day 5</h3></th>
           </tr>
         </thead>
         <tbody>
           
-          <% for(var i = 0; i < 8; i++){ var k = i+3%>
+          <% for(var i = 0; i < 8; i++){ var k = i*3%>
             <tr>
-              <th scope="row"><%= k%></th>
+              <th scope="row" class="text-center"><h3><%= k%></h3></th>
             <% for(var j = 0; j < 5; j++) { %>
 
               <td class="text-center">
-                <%= forecast[i].main.temp %>
+                <h3><%= forecast[i].main.temp %></h3>
               </td>
               <% } %>
             </tr>
