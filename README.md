@@ -14,4 +14,10 @@ Tech:
 
 
 ![1](https://github.com/pandyama/Weather/blob/master/Capture.PNG)
+---
+
+![1](https://github.com/pandyama/Weather/blob/master/Capture2.PNG)
+---
+
+![1](https://github.com/pandyama/Weather/blob/master/Capture3.PNG)
 
