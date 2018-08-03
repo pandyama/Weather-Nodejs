@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <fieldset>
+        <!--<form action="/" method="post">
+          <input name="city" type="text" class="ghost-input" placeholder="Enter a City" required>
+          <input type="submit" class="ghost-button" value="Get Weather">
+        </form>-->
+        <p><%= mycity%></p>
+        
+        
+      </fieldset>
+      <div class="container-fluid">
+      <table class="table table-bordered">
+        <thead>
+          <tr class="text-center">
+            <th scope="col">Time</th>
+            <th scope="col">Today</th>
+            <th scope="col">Tommorrow</th>
+            <th scope="col">Day After Tomorrow</th>
+            <th scope="col">Too Far</th>
+            <th scope="col">Why Bother</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <% for(var i = 0; i < 8; i++){ var k = i+3%>
+            <tr>
+              <th scope="row"><%= k%></th>
+            <% for(var j = 0; j < 5; j++) { %>
+
+              <td class="text-center">
+                <%= forecast[i].main.temp %>
+              </td>
+              <% } %>
+            </tr>
+       <% } %>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </body>
+</html> 
