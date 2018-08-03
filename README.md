@@ -13,3 +13,5 @@ Tech:
   - https://openweathermap.org/api
 
 
+![1](https://github.com/pandyama/Weather/blob/master/Capture.PNG)
+
