@@ -11,35 +11,44 @@
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+
+    <!-- Loading third party fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+    <link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Loading main css file -->
+    <link rel="stylesheet" href="style.css">
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
+
+    <!--
     <div class="container">
       <fieldset>
-        <!--<form action="/" method="post">
+        <form action="/" method="post">
           <input name="city" type="text" class="ghost-input" placeholder="Enter a City" required>
           <input type="submit" class="ghost-button" value="Get Weather">
-        </form>-->
+        </form>
         <p><%= mycity%></p>
         
         
       </fieldset>
       <div class="container-fluid">
-      <table class="table table-bordered">
+      <table class="table table-borderless">
         <thead>
           <tr class="text-center">
             <th scope="col" class="text-center"><h3>Time</h3></th>
-            <th scope="col" class="text-center"><h3>Today</h3></th>
-            <th scope="col" class="text-center"><h3>Day 2</h3></th>
-            <th scope="col" class="text-center"><h3>Day 3</h3></th>
-            <th scope="col" class="text-center"><h3>Day 4</h3></th>
-            <th scope="col" class="text-center"><h3>Day 5</h3></th>
+            <th scope="col" class="text-center"><h3><%= day[0]%></h3></th>
+            <th scope="col" class="text-center"><h3><%= day[1]%></h3></th>
+            <th scope="col" class="text-center"><h3><%= day[2]%></h3></th>
+            <th scope="col" class="text-center"><h3><%= day[3]%></h3></th>
+            <th scope="col" class="text-center"><h3><%= day[4]%></h3></th>
           </tr>
         </thead>
         <tbody>
           
-          <% for(var i = 0; i < 8; i++){ var k = i*3%>
+          <% for(var i = 0; i < 8; i++){ var k = hour[i]%>
             <tr>
               <th scope="row" class="text-center"><h3><%= k%></h3></th>
             <% for(var j = 0; j < 5; j++) { %>
@@ -53,6 +62,33 @@
         </tbody>
       </table>
     </div>
-    </div>
+    </div>-->
+
+            <div class="forecast">
+              <div class="forecast-header">
+                <div class="day">Tuesday</div>
+              </div> <!-- .forecast-header -->
+            </div>
+
+
+            <table class="table table-borderless">
+            <div class="forecast-table">
+            <% for(var i = 0; i < 8; i++){ var k = hour[i]%>
+                 <tr>
+                 <th scope="row" class="text-center"><div class="degree"><h3><%= k%></h3>
+                 </div></th>
+                 <% for(var j = 0; j < 5; j++) { %>
+                    <td class="text-center">
+                      <div class="forecast-icon">
+                        <img src="images/icons/icon-3.svg" alt="" width=48>
+                      </div>
+                      <div class="degree"><h3><%= forecast[i].main.temp %></h3><sup>o</sup>C</div>
+                    </td>
+                <% } %> 
+                  </tr>
+                <% } %>
+            </div>
+            </table>
+
   </body>
 </html> 

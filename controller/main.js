@@ -13,12 +13,39 @@ var apiKey = '0a877c81070549dca8624124180606';
 
 
 
+
 var options = {
   host: 'api.apixu.com',
   port: 80,
   path: '/v1/current.json?key=' + apiKey + '&q=',
   method: 'GET'
 };
+
+
+function GetDays(startDay, daysToAdd){
+	var days = [];
+
+	for(var i = 0; i < daysToAdd; i++){
+		var currentDate = new Date();
+		currentDate.setDate(startDay.getDate()+i);
+		days.push(DayAsString(currentDate.getDay()));
+	}
+	return days;
+}
+
+function DayAsString(dayIndex) {
+    var weekdays = new Array(7);
+    weekdays[0] = "Sunday";
+    weekdays[1] = "Monday";
+    weekdays[2] = "Tuesday";
+    weekdays[3] = "Wednesday";
+    weekdays[4] = "Thursday";
+    weekdays[5] = "Friday";
+    weekdays[6] = "Saturday";
+
+    return weekdays[dayIndex];
+}
+
 let city = 'hello';
 exports.currentWeather = function(query, callback){
 	city = query.body.city;
@@ -52,6 +79,13 @@ exports.currentWeather = function(query, callback){
 
 exports.currentForecast = function(query, callback){
 	//let city = query.body.city;
+
+	var start = new Date();
+	var days = GetDays(start, 5);
+	console.log(days[0]);
+
+	var hours = new Array("Midnight","3AM","6AM","9AM","Noon","3PM","6PM","9PM");
+
 	http.request(`https://api.openweathermap.org/data/2.5/forecast?q=${city},ca&units=imperial&appid=168e2b48de1acb989df3eada5547778c`, function(res) {
 		let data = "";
 
@@ -78,7 +112,7 @@ exports.currentForecast = function(query, callback){
 	  	//let weather = JSON.parse(data);
 	  	//let weatherText = `It's ${weather.main.temp} degrees in ${city}!`;
 	  	let cityname = `Forecast for ${city}`;
-		callback.render('forecast',{forecast: a, mycity: cityname});
+		callback.render('forecast',{forecast: a, mycity: cityname, day: days, hour: hours});
 	  });
 	}).on('error', function(err) {
         // handle errors with the request itself
@@ -88,3 +122,4 @@ exports.currentForecast = function(query, callback){
     }).end();
 	
 }
+
