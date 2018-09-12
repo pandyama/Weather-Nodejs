@@ -12,7 +12,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var apiKey = '0a877c81070549dca8624124180606';
 
 
-
+ //<!--<% for(var i = 0; i < 8; i++){ var k = hour[i]%>-->
+ 	 //<!--<th scope="row" class="text-center"><h3><%= k%></h3></th>-->
+//<!--<% } %>-->
 
 var options = {
   host: 'api.apixu.com',
@@ -102,17 +104,35 @@ exports.currentForecast = function(query, callback){
 	  	//console.log(test.main.temp);
 	  	console.log(size);
 	  	var i;
-	  	var a = [];
+	  	var j = 0;
+	  	var k = 0;
+	  	var avgDay = 0;
+	  	var send = [];
+
 	  	for(i = 0; i < fore.list.length; i++){
-	  		a[i] = fore.list[i];
+	  		//a[i] = fore.list[i];
+	  		if(j != 7){
+	  			avgDay = avgDay + (fore.list[i].main.temp);
+	  			j++;
+	  		}
+	  		if(j == 7){
+	  			send[k] = Math.round((avgDay/8));
+	  			//a[k] = ans;
+	  			//console.log(ans);
+	  			console.log(send[k]);
+	  			j = 0;
+	  			avgDay = 0;
+	  			//ans = 0;
+	  			k++;
+	  		}
 	  	};
-	  	var res = a[0];
-	  	console.log(res.main.temp);
+	  	//var res = a[0];
+	  	//console.log(res.main.temp);
 	  	console.log(`${city}`);
 	  	//let weather = JSON.parse(data);
 	  	//let weatherText = `It's ${weather.main.temp} degrees in ${city}!`;
-	  	let cityname = `Forecast for ${city}`;
-		callback.render('forecast',{forecast: a, mycity: cityname, day: days, hour: hours});
+	  	let cityname = `Few days lookout for ${city}`;
+		callback.render('forecast',{forecast: send, mycity: cityname, day: days});
 	  });
 	}).on('error', function(err) {
         // handle errors with the request itself
