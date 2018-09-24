@@ -2,16 +2,61 @@
 <html>
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7/dist/css/bootstrap.min.css">
 
+  <link rel="stylesheet" type="text/css" href="test_mp.css">
+
+
+
+ <script>
+     $(function () {
+        $('#blah').removeClass('hidden');
+      });
+      $(document).ready(function(){
+
+        var clicked = true;
+
+        $('.card').click(function(){
+          if(clicked){
+            clicked = false;
+            $(this).animate({"height":"250"});
+            $(this).append('<div id="blah">hello</div>');
+            $('#blah').show();
+            //$(this).append('<div id="blah">hello</div>');
+          }
+          else{
+            clicked = true;
+            $(this).animate({"height":"65"});
+            $('#blah').remove();
+          }
+          //$(".card").slideToggle();
+          //$("h3").hide();
+          
+          //$(".card").toggle();
+          //alert("selected");
+          /*<div class="card" style="width:8rem">
+                  <img src="/images/down.jpg" style="display:block; margin: 0 auto;" width="50" height="50" />
+                </div>
+
+                <div id="blah" style="display: none;">
+                        hello
+                      </div>
+
+
+
+                */
+        });
+      });
+</script>
 
 </head>
 <body>
+
+
     
     <div class="container">
       <div class="container-fluid">
@@ -19,13 +64,14 @@
         <tbody>
             <tr>
             <div class="container-fluid">
-            <h3><%= mycity%></h3>
+            <h2><%= mycity%></h2>
             <% for(var j = 0; j < 5; j++) { %>
                 <td class="text-center">
-                  <div class="card text-white bg-primary mb-3" style="width:14rem">
-                    <div class="card-body">
-                      <h3><%= day[j]%></h3>
-                      <h3><%= forecast[j] %>&#8457</h3>
+                  <div class="card" style="width:8rem;">
+                    <div class="a">
+                      <h5><%= day[j]%></h5>
+                      <h5><%= forecast[j] %>&#8457</h5>
+                      
                     </div>
                   </div>
                 </td>
@@ -36,6 +82,8 @@
       </table>
     </div>
     </div>
+
+   
 
 </body>
 </html>

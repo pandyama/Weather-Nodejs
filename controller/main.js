@@ -67,7 +67,7 @@ exports.currentWeather = function(query, callback){
 	  res.on('end', function (chunk) {
 	  	let weather = JSON.parse(data);
 	  	console.log(weather);
-	  	let weatherText = `It's ${weather.main.temp} degrees F in ${city}!`;
+	  	let weatherText = `It's ${weather.main.temp} F in ${city}!`;
 		callback.render('index', {weather: weatherText, error: null});
 	  });
 	}).on('error', function(err) {
@@ -100,17 +100,24 @@ exports.currentForecast = function(query, callback){
 	  	let fore = JSON.parse(data);
 	  	console.log("Hello 1 2 3....");
 	  	let test = fore.list;
-	  	let size = Object.keys(test).length;
+	  	//let size = Object.keys(test).length;
 	  	//console.log(test.main.temp);
-	  	console.log(size);
+	  	//console.log(size);
+	  	console.log(test);
 	  	var i;
 	  	var j = 0;
 	  	var k = 0;
 	  	var avgDay = 0;
 	  	var send = [];
 
+	  	var wind = [];
+
+
 	  	for(i = 0; i < fore.list.length; i++){
 	  		//a[i] = fore.list[i];
+
+	  		wind[i] = fore.list[i];
+
 	  		if(j != 7){
 	  			avgDay = avgDay + (fore.list[i].main.temp);
 	  			j++;
@@ -132,7 +139,7 @@ exports.currentForecast = function(query, callback){
 	  	//let weather = JSON.parse(data);
 	  	//let weatherText = `It's ${weather.main.temp} degrees in ${city}!`;
 	  	let cityname = `Few days lookout for ${city}`;
-		callback.render('forecast',{forecast: send, mycity: cityname, day: days});
+		callback.render('forecast',{forecast: send, mycity: cityname, day: days, other: wind});
 	  });
 	}).on('error', function(err) {
         // handle errors with the request itself
