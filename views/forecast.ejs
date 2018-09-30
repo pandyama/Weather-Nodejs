@@ -8,30 +8,41 @@
   
   <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7/dist/css/bootstrap.min.css">
 
-  <link rel="stylesheet" type="text/css" href="test_mp.css">
+  <!--<link rel="stylesheet" type="text/css" href="test_mp.css">-->
 
 
 
  <script>
-     $(function () {
-        $('#blah').removeClass('hidden');
-      });
-      $(document).ready(function(){
 
+      $(document).ready(function(){
+        //$("#blah").removeClass('hidden');
         var clicked = true;
 
-        $('.card').click(function(){
+        $('.a').hover(function(){
+          //$holder = $('#blah').detach();
+          var tag = $(this).attr('id');
+          //alert($(this).attr('id'));
           if(clicked){
             clicked = false;
-            $(this).animate({"height":"250"});
-            $(this).append('<div id="blah">hello</div>');
-            $('#blah').show();
+            $(this).animate({"height":"150"});
+            //$(this).append('<div id="blah">hello</div>');
+            //$(this).add($("#blah").show());
+            //$(this).text("Meet");
+            //$(this).children('a').children('h5').toggleClass('employeeInfoHover');
+
+
+            $("#"+tag).children("#fu").show();
+
+            //alert($(this).attr('id'));
+            //$("#" + inputID 
             //$(this).append('<div id="blah">hello</div>');
           }
           else{
             clicked = true;
             $(this).animate({"height":"65"});
-            $('#blah').remove();
+
+            $("#"+tag).children("#fu").hide();
+            //$(this).hide($('#blah'));
           }
           //$(".card").slideToggle();
           //$("h3").hide();
@@ -68,10 +79,10 @@
             <% for(var j = 0; j < 5; j++) { %>
                 <td class="text-center">
                   <div class="card" style="width:8rem;">
-                    <div class="a">
+                    <div class="a" id="<%= j%>">
                       <h5><%= day[j]%></h5>
                       <h5><%= forecast[j] %>&#8457</h5>
-                      
+                      <p id="fu" style="display: none;"><%= other[j]%> mph</p>
                     </div>
                   </div>
                 </td>

@@ -110,20 +110,23 @@ exports.currentForecast = function(query, callback){
 	  	var avgDay = 0;
 	  	var send = [];
 
-	  	var wind = [];
+	  	var winds = [];
+	  	var windDay = 0;
 
 
 	  	for(i = 0; i < fore.list.length; i++){
 	  		//a[i] = fore.list[i];
 
-	  		wind[i] = fore.list[i];
+	  		winds[i] = fore.list[i];
 
 	  		if(j != 7){
 	  			avgDay = avgDay + (fore.list[i].main.temp);
+	  			windDay = windDay + (fore.list[i].wind.speed);
 	  			j++;
 	  		}
 	  		if(j == 7){
 	  			send[k] = Math.round((avgDay/8));
+	  			winds[k] = Math.round((windDay/8));
 	  			//a[k] = ans;
 	  			//console.log(ans);
 	  			console.log(send[k]);
@@ -139,7 +142,7 @@ exports.currentForecast = function(query, callback){
 	  	//let weather = JSON.parse(data);
 	  	//let weatherText = `It's ${weather.main.temp} degrees in ${city}!`;
 	  	let cityname = `Few days lookout for ${city}`;
-		callback.render('forecast',{forecast: send, mycity: cityname, day: days, other: wind});
+		callback.render('forecast',{forecast: send, mycity: cityname, day: days, other: winds});
 	  });
 	}).on('error', function(err) {
         // handle errors with the request itself
