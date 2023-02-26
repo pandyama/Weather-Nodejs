@@ -9,7 +9,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var apiKey = '0a877c81070549dca8624124180606';
+var apiKey = 'YOUR API KEY';
 
 
  //<!--<% for(var i = 0; i < 8; i++){ var k = hour[i]%>-->
